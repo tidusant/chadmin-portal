@@ -1,7 +1,9 @@
 FROM golang:latest 
 RUN mkdir /app 
 ADD . /app/ 
+CMD ["ls"]
 WORKDIR /app 
 EXPOSE 80
-RUN go build -o main . 
-CMD ["/app/main"]
+CMD ["ls"]
+RUN go build -o main ./app/ 
+ENTRYPOINT ./app/main
