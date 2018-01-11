@@ -1,8 +1,15 @@
-FROM golang:latest 
-RUN mkdir /app 
+FROM golang:latest
+RUN mkdir /app
 ADD . /app
-WORKDIR /app 
-EXPOSE 80
-CMD ["ls"]
+WORKDIR /app
+RUN go get github.com/gin-gonic/gin
+RUN go get github.com/spf13/viper
+
+RUN echo "[url \"git@github.com:\"]\n\tinsteadOf = https://github.com/" >> /root/.gitconfig
+RUN mkdir /root/.ssh && echo "StrictHostKeyChecking no " > /root/.ssh/config
+
+RUN go get github.com/tidusant/c3m-common/...
+RUN go get github.com/tidusant/chadmin-repo/...
 RUN go build -o main .
-ENTRYPOINT ./main
+EXPOSE 80
+ENTRYPOINT ./main 
