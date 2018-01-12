@@ -1,2 +1,10 @@
+#go_import
+github.com/gin-gonic/gin
+github.com/spf13/viper
+#go_library
+github.com/tidusant/c3m-common
+github.com/tidusant/chadmin-repo
+#dockername
 tidusant/chadmin-portal
+#deploys_server
 http://45.117.170.26:8081/
