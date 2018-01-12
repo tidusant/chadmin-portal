@@ -1,6 +1,9 @@
 #go_import
 github.com/gin-gonic/gin
 github.com/spf13/viper
+github.com/nfnt/resize
+gopkg.in/mgo.v2
+gopkg.in/mgo.v2/bson
 #go_library
 github.com/tidusant/c3m-common
 github.com/tidusant/chadmin-repo
