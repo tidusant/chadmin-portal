@@ -9,6 +9,6 @@ github.com/tidusant/chadmin-repo/...
 #dockername
 tidusant/chadmin-portal
 #deploys_server
-http://54.179.157.220:8081/
+http://54.179.157.220:8080/
 #runport
 8080
