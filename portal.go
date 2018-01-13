@@ -132,7 +132,7 @@ func myRoute(c *gin.Context, rpcname string) string {
 			if RPCname != "aut" {
 				//check login
 				userid := ""
-				client, err := rpc.Dial("tcp", "localhost:"+viper.GetString("RPCname.aut"))
+				client, err := rpc.Dial("tcp", viper.GetString("RPCname.aut"))
 				if c3mcommon.CheckError("dial RPCAuth", err) {
 					autCall := client.Go("Arith.Run", session+"|"+userIP+"|"+"aut", &userid, nil)
 					autreplyCall := <-autCall.Done
