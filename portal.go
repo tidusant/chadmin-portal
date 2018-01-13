@@ -96,6 +96,12 @@ func main() {
 		c.String(http.StatusOK, strrt)
 
 	})
+	router.GET("/*name", func(c *gin.Context) {
+		name := c.Param("name")
+
+		c.String(http.StatusOK, "hello "+name)
+
+	})
 	router.Run(":" + strconv.Itoa(port))
 
 }
