@@ -11,4 +11,4 @@ tidusant/chadmin-portal
 #deploys_server
 http://54.179.157.220:8080/
 #runport
-8080
+8088
