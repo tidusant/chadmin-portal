@@ -3,4 +3,4 @@ FROM scratch
 ADD main /
 ADD config /config
 EXPOSE 80
-CMD ["/main"] 
+CMD ["/main","--port=80"] 
