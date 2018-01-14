@@ -10,6 +10,8 @@ github.com/tidusant/chadmin-repo/...
 tidusant/chadmin-portal
 #deploys_server
 http://54.179.157.220:8080/
+#docker_network
+isolated_nw
 #docker_ip
 172.17.0.2:80
 #hostport
