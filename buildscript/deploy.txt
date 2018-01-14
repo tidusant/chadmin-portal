@@ -13,6 +13,6 @@ http://54.179.157.220:8080/
 #docker_network
 isolated_nw
 #docker_ip
-172.17.0.2:80
+172.20.0.2:80
 #hostport
 8088
