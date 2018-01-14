@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 
 	"github.com/tidusant/c3m-common/c3mcommon"
 	"github.com/tidusant/c3m-common/log"
@@ -33,15 +32,15 @@ func main() {
 
 	flag.Parse()
 
-	logLevel := log.DebugLevel
+	//logLevel := log.DebugLevel
 	if !debug {
-		logLevel = log.InfoLevel
+		//logLevel = log.InfoLevel
 		gin.SetMode(gin.ReleaseMode)
 	}
 
-	log.SetOutputFile(fmt.Sprintf("portal-"+strconv.Itoa(port)), logLevel)
-	defer log.CloseOutputFile()
-	log.RedirectStdOut()
+	// log.SetOutputFile(fmt.Sprintf("portal-"+strconv.Itoa(port)), logLevel)
+	// defer log.CloseOutputFile()
+	// log.RedirectStdOut()
 
 	log.Infof("running with port:" + strconv.Itoa(port))
 
