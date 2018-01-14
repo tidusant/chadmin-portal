@@ -80,7 +80,7 @@ func main() {
 		reply := ""
 		client, err := rpc.Dial("tcp", viper.GetString("RPCname.aut"))
 		if c3mcommon.CheckError("dial RPCAuth", err) {
-			autCall := client.Go("Arith.Run", session+"|"+userIP+"|"+"aut", &userid, nil)
+			autCall := client.Go("Arith.Run", session+"|"+userIP+"|"+"test", &userid, nil)
 			autreplyCall := <-autCall.Done
 			c3mcommon.CheckError("RPCAuth aut ", autreplyCall.Error)
 		} else {
