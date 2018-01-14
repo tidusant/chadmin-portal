@@ -47,31 +47,7 @@ func main() {
 	//init config
 
 	router := gin.Default()
-	//	router.GET("/images/:name", func(c *gin.Context) {
-	//		requestDomain := c.Request.Header.Get("Origin")
-	//		allowDomain := c3mcommon.CheckDomain(requestDomain)
-	//		strrt := ""
-	//		c.Header("Access-Control-Allow-Origin", "*")
-	//		if allowDomain != "" {
-	//			c.Header("Access-Control-Allow-Origin", allowDomain)
-	//			c.Header("Access-Control-Allow-Headers", "access-control-allow-origin, access-control-allow-headers,access-control-allow-credentials")
-	//			c.Header("Access-Control-Allow-Credentials", "true")
-	//			log.Debugf("check request:%s", c.Request.URL.Path)
-	//			if rpsex.CheckRequest(c.Request.URL.Path, c.Request.UserAgent(), c.Request.Referer(), c.Request.RemoteAddr, "GET") {
-	//				strrt = myRoute(c, "img")
-	//			} else {
-	//				log.Debugf("check request error")
-	//			}
-	//		} else {
-	//			log.Debugf("Not allow " + requestDomain)
-	//		}
-	//		if strrt == "" {
-	//			strrt = c3mcommon.Fake64()
-	//		}
-	//		c.String(http.StatusOK, strrt)
 
-	//	})
-	// This handler will match /user/john but will not match neither /user/ or /user
 	router.POST("/*name", func(c *gin.Context) {
 		requestDomain := c.Request.Header.Get("Origin")
 		allowDomain := c3mcommon.CheckDomain(requestDomain)
@@ -98,8 +74,20 @@ func main() {
 	})
 	router.GET("/*name", func(c *gin.Context) {
 		name := c.Param("name")
+		session := "abc"
+		userIP := "12.12.12.22"
+		userid := ""
+		reply := ""
+		client, err := rpc.Dial("tcp", viper.GetString("RPCname.aut"))
+		if c3mcommon.CheckError("dial RPCAuth", err) {
+			autCall := client.Go("Arith.Run", session+"|"+userIP+"|"+"aut", &userid, nil)
+			autreplyCall := <-autCall.Done
+			c3mcommon.CheckError("RPCAuth aut ", autreplyCall.Error)
+		} else {
+			reply = c3mcommon.ReturnJsonMessage("-1", "service not run", "", "")
+		}
 
-		c.String(http.StatusOK, "hello "+name)
+		c.String(http.StatusOK, "hello "+name+"<br />"+reply)
 
 	})
 	router.Run(":" + strconv.Itoa(port))
