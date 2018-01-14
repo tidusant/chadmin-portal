@@ -89,10 +89,10 @@ func myRoute(c *gin.Context, rpcname string) string {
 	if rpcname != "" {
 		RPCname = rpcname
 	}
-	ck, _ := c.Request.Cookie("sex")
+
 	session := ""
-	if ck != nil {
-		session = ck.Value
+	if len(args) > 1 {
+		session = args[1]
 	}
 	log.Debugf("decode name:%s", mycrypto.Decode(name))
 	if RPCname == "CreateSex" {
