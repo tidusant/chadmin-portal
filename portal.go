@@ -73,25 +73,7 @@ func main() {
 		c.String(http.StatusOK, strrt)
 
 	})
-	router.GET("/*name", func(c *gin.Context) {
-		name := c.Param("name")
-		session := "abc"
-		userIP := "12.12.12.22"
 
-		reply := ""
-
-		client, err := rpc.Dial("tcp", viper.GetString("RPCname.aut"))
-		if c3mcommon.CheckError("dial RPCAuth", err) {
-			autCall := client.Go("Arith.Run", session+"|"+userIP+"|"+"test", &reply, nil)
-			autreplyCall := <-autCall.Done
-			c3mcommon.CheckError("RPCAuth aut ", autreplyCall.Error)
-		} else {
-			reply = c3mcommon.ReturnJsonMessage("-1", "service not run", "", "")
-		}
-
-		c.String(http.StatusOK, "hello "+name+"<br />"+reply)
-
-	})
 	router.Run(":" + strconv.Itoa(port))
 
 }
@@ -128,6 +110,7 @@ func myRoute(c *gin.Context, rpcname string) string {
 			if RPCname != "aut" {
 				//check login
 				userid := ""
+
 				client, err := rpc.Dial("tcp", viper.GetString("RPCname.aut"))
 				if c3mcommon.CheckError("dial RPCAuth", err) {
 					autCall := client.Go("Arith.Run", session+"|"+userIP+"|"+"aut", &userid, nil)
@@ -149,7 +132,7 @@ func myRoute(c *gin.Context, rpcname string) string {
 					//								c3mcommon.CheckError("RPCAuth.Call", err)
 
 					//Asyn call only for http
-					client, err := rpc.Dial("tcp", "localhost:"+viper.GetString("RPCname."+RPCname))
+					client, err := rpc.Dial("tcp", viper.GetString("RPCname."+RPCname))
 					if c3mcommon.CheckError("dial RPC"+RPCname+"."+data, err) {
 						log.Debugf("Call RPC " + RPCname + " data:" + data)
 						log.Debugf("Call RPC " + RPCname + " userid:" + userid)
@@ -164,7 +147,7 @@ func myRoute(c *gin.Context, rpcname string) string {
 					reply = c3mcommon.ReturnJsonMessage("-3", "not authorize", "", "")
 				}
 			} else {
-				client, err := rpc.Dial("tcp", "localhost:"+viper.GetString("RPCname.aut"))
+				client, err := rpc.Dial("tcp", viper.GetString("RPCname.aut"))
 				if c3mcommon.CheckError("dial RPCAuth"+"."+data, err) {
 					autCall := client.Go("Arith.Run", session+"|"+userIP+"|"+data, &reply, nil)
 					autreplyCall := <-autCall.Done
