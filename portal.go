@@ -2,9 +2,7 @@ package main
 
 import (
 	"flag"
-	"fmt"
 
-	"github.com/nlopes/slack"
 	"github.com/tidusant/c3m-common/c3mcommon"
 	"github.com/tidusant/c3m-common/log"
 	"github.com/tidusant/c3m-common/mycrypto"
@@ -28,35 +26,22 @@ func init() {
 func main() {
 	var port int
 	var debug bool
-	var slacktoken string
-
-	var slackchannel string
 	//fmt.Println(mycrypto.Encode("abc,efc", 5))
 	flag.IntVar(&port, "port", 8081, "help message for flagname")
 	flag.BoolVar(&debug, "debug", false, "Indicates if debug messages should be printed in log files")
-	flag.StringVar(&slacktoken, "slacktoken", "xoxb-298302086051-Q5ZYSQxIndUCo05vD6QfAyQi", "slacktoken")
-	flag.StringVar(&slackchannel, "slackchannel", "chadmin-portal", "slackchannel")
 	flag.Parse()
 
-	slackapi := slack.New(slacktoken)
+	// logLevel := log.DebugLevel
+	// if !debug {
+	// 	logLevel = log.InfoLevel
+	// 	gin.SetMode(gin.ReleaseMode)
+	// }
 
-	logLevel := log.DebugLevel
-	if !debug {
-		logLevel = log.InfoLevel
-		gin.SetMode(gin.ReleaseMode)
-	}
-
-	log.SetOutputFile(fmt.Sprintf("portal-"+strconv.Itoa(port)), logLevel)
-	defer log.CloseOutputFile()
-	log.RedirectStdOut()
+	// log.SetOutputFile(fmt.Sprintf("portal-"+strconv.Itoa(port)), logLevel)
+	// defer log.CloseOutputFile()
+	// log.RedirectStdOut()
 
 	log.Infof("running with port:" + strconv.Itoa(port))
-
-	_, _, err := slackapi.PostMessage(slackchannel, "running with port:"+strconv.Itoa(port), slack.PostMessageParameters{})
-	if err != nil {
-		fmt.Printf("%s\n", err)
-		return
-	}
 
 	//init config
 
