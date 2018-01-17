@@ -115,6 +115,7 @@ func myRoute(c *gin.Context, rpcname string) string {
 					autCall := client.Go("Arith.Run", session+"|"+userIP+"|"+"aut", &userid, nil)
 					autreplyCall := <-autCall.Done
 					c3mcommon.CheckError("RPCAuth aut ", autreplyCall.Error)
+					client.Close()
 				} else {
 					reply = c3mcommon.ReturnJsonMessage("-1", "service not run", "", "")
 				}
@@ -138,6 +139,7 @@ func myRoute(c *gin.Context, rpcname string) string {
 						rpcCall := client.Go("Arith.Run", session+"|"+userid+"|"+data, &reply, nil)
 						rpcreplyCall := <-rpcCall.Done
 						c3mcommon.CheckError("RPC"+RPCname+"."+data, rpcreplyCall.Error)
+						client.Close()
 					} else {
 						reply = c3mcommon.ReturnJsonMessage("-1", "service not run", "", "")
 					}
@@ -151,6 +153,7 @@ func myRoute(c *gin.Context, rpcname string) string {
 					autCall := client.Go("Arith.Run", session+"|"+userIP+"|"+data, &reply, nil)
 					autreplyCall := <-autCall.Done
 					c3mcommon.CheckError("RPCAuth."+data, autreplyCall.Error)
+					client.Close()
 				} else {
 					reply = c3mcommon.ReturnJsonMessage("-1", "service not run", "", "")
 				}
