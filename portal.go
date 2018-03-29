@@ -82,6 +82,8 @@ func myRoute(c *gin.Context, rpcname string) string {
 	name := c.Param("name")
 	name = name[1:] //remove slash
 	data := c.PostForm("data")
+	log.Debugf("header:%v", c.Request.Header)
+	log.Debugf("Request:%v", c.Request)
 	userIP, _, _ := net.SplitHostPort(c.Request.RemoteAddr)
 	log.Debugf("decode name:%s", mycrypto.Decode(name))
 	args := strings.Split(mycrypto.Decode(name), "|")
@@ -171,7 +173,8 @@ func myRoute(c *gin.Context, rpcname string) string {
 			// } else {
 			// 	strrt = lzjs.CompressToBase64(reply)
 			// }
-			strrt = mycrypto.Encode(reply, 8, 3)
+			log.Debugf("reply", reply)
+			strrt = mycrypto.Encode(reply, 8)
 		}
 
 	}
