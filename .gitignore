@@ -4,3 +4,5 @@ logs/
 portal.exe
 config.toml
 *.exe~
+.DS_Store
+portalmac
