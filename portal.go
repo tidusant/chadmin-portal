@@ -102,7 +102,7 @@ func main() {
 func myRoute(c *gin.Context) models.RequestResult {
 
 	name := c.Param("name")
-	name = name[1:] //remove slash
+	name = name[1:] //remove  slash
 	data := c.PostForm("data")
 	// data = c.Request.GetBody().PostForm("data")
 	log.Debugf("header:%v", c.Request.Header)
