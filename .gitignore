@@ -1,6 +1,7 @@
 
 debug
 logs/
+buildscript/
 portal.exe
 config.toml
 *.exe~
