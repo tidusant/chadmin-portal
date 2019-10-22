@@ -138,7 +138,7 @@ func myRoute(c *gin.Context) models.RequestResult {
 		return c3mcommon.ReturnJsonMessage("-2", "session not found", "", "")
 	}
 	if RPCname == "aut" {
-		//check rpc is running
+		//check rpc  is running
 		client, err := rpc.Dial("tcp", viper.GetString("RPCname.aut"))
 		if err != nil {
 			return c3mcommon.ReturnJsonMessage("-1", "service not run", "", "")
