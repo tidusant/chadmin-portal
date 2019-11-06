@@ -60,7 +60,6 @@ func main() {
 		//request localhost.com:8081 =>host:localhost.com:8081
 		//request 192.168.1.223:8081 =>host:192.168.1.223:8081
 		//RemoteAddr: userip call.
-
 		//RemoteAddr: ipcall
 		requestDomain := c.Request.Header.Get("Origin")
 
