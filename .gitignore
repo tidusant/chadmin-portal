@@ -4,3 +4,6 @@ logs/
 portal.exe
 config.toml
 *.exe~
+.DS_Store
+.vscode/launch.json
+.vscode/tasks.json
