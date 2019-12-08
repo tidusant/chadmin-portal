@@ -3,6 +3,7 @@ debug
 logs/
 buildscript/
 portal.exe
+portalmac
 config.toml
 *.exe~
 .DS_Store
