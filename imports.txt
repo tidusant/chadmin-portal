@@ -6,5 +6,5 @@ gopkg.in/mgo.v2/bson
 github.com/tidusant/c3m-common/log@beta1
 github.com/tidusant/c3m-common/mycrypto@beta1
 github.com/tidusant/c3m-common/c3mcommon@beta1
-github.com/tidusant/chadmin-repo/models@beta1
-github.com/tidusant/chadmin-repo/session@beta1
+github.com/tidusant/chadmin-repo/models@beta2
+github.com/tidusant/chadmin-repo/session@beta2
