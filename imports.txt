@@ -3,8 +3,8 @@ github.com/spf13/viper
 github.com/nfnt/resize
 gopkg.in/mgo.v2
 gopkg.in/mgo.v2/bson
-github.com/tidusant/c3m-common/log@beta1
-github.com/tidusant/c3m-common/mycrypto@beta1
-github.com/tidusant/c3m-common/c3mcommon@beta1
+github.com/tidusant/c3m-common/log@old4
+github.com/tidusant/c3m-common/mycrypto@old4
+github.com/tidusant/c3m-common/c3mcommon@old4
 github.com/tidusant/chadmin-repo/models@old2
 github.com/tidusant/chadmin-repo/session@old2
