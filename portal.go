@@ -113,8 +113,7 @@ func myRoute(c *gin.Context) models.RequestResult {
 	data = mycrypto.Decode(data)
 	datargs := strings.Split(data, "|")
 	RPCname := args[0]
-	session := ""
-	reply := c3mcommon.ReturnJsonMessage("0", "unknown error", "", "")
+
 	if RPCname == "CreateSex" {
 		data = rpsex.CreateSession()
 		b, _ := json.Marshal(data)
@@ -122,25 +121,8 @@ func myRoute(c *gin.Context) models.RequestResult {
 
 	}
 
-	if RPCname == "DemoData" {
-		session = rpsex.CreateSession()
-		//auto login for demodata
-		client, err := rpc.Dial("tcp", viper.GetString("RPCname.aut"))
-		if err != nil {
-			return c3mcommon.ReturnJsonMessage("-1", "service not run", "", "")
-		}
-		rpcCall := client.Go("Arith.Run", session+"|"+userIP+"|l|"+data, &reply, nil)
-		rpcreplyCall := <-rpcCall.Done
-		if rpcreplyCall.Error != nil {
-			client.Close()
-			return c3mcommon.ReturnJsonMessage("-1", rpcreplyCall.Error.Error(), "", "")
-		}
-		client.Close()
-		RPCname = "prod"
-		data = "demo"
-	}
-
-	if len(args) > 1 && session != "" {
+	session := ""
+	if len(args) > 1 {
 		session = args[1]
 	}
 
@@ -148,6 +130,8 @@ func myRoute(c *gin.Context) models.RequestResult {
 	if session == "" && datargs[0] == "test" && len(datargs) > 1 {
 		session = mycrypto.Decode(datargs[1])
 	}
+
+	reply := c3mcommon.ReturnJsonMessage("0", "unknown error", "", "")
 
 	//check session
 	if !rpsex.CheckSession(session) {
