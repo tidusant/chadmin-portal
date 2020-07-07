@@ -1,7 +1,6 @@
-github.com/tidusant/c3m-common/c3mcommon@old
-github.com/tidusant/c3m-common/log@old
-github.com/tidusant/c3m-common/lzjs@old
-github.com/tidusant/c3m-common/mycrypto@old
-github.com/tidusant/c3m-common/mystring@old
-github.com/tidusant/chadmin-repo/models@old
-github.com/tidusant/chadmin-repo/session@old
+#import
+github.com/gin-gonic/gin
+github.com/spf13/viper
+#checkout
+github.com/tidusant/c3m-common
+github.com/tidusant/chadmin-repo
